@@ -1,7 +1,1217 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>What's Cooking?</title>
+  
+  <!-- Google Fonts: Poppins (a fun, modern font) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap">
+  
+  <!-- Font Awesome for Icons -->
+<link 
+  rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+  referrerpolicy="no-referrer"
+/>
+
+  
+  <!-- Bootstrap CSS for responsive design -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Custom Styles -->
+  <style>
+    /* 
+      ------------------------------------------------------------
+      FUN GEN Z LOOK:
+      - Bright/pastel gradients
+      - Whimsical text
+      - Rounded corners, drop shadows
+      - Font Awesome instead of Material Icons
+      ------------------------------------------------------------
+    */
+
+    body {
+      padding: 40px 20px;
+      /* Candy-like animated gradient background */
+      background: linear-gradient(135deg, #ffc9c0, #ffe0c7, #fff4c2);
+      background-size: 200% 200%;
+      animation: gradientMove 8s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      color: #424242;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    h1, h2, h3, h4, h5 {
+      color: #2b2b2b;
+      font-weight: 700;
+    }
+
+    /* HEADER SECTION */
+    .header-section {
+      /* Vibrant candy-like gradient for the header */
+      background: linear-gradient(135deg, #ff8fab, #ffa0ce, #ffc2e3);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      margin-bottom: 50px;
+      text-align: center;
+      transition: background 0.5s;
+    }
+    .header-section h1 {
+      font-size: 2.6em;
+      color: #fff;
+      margin-bottom: 25px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    .header-section .form-label {
+      font-weight: 600;
+      color: #ffffff;
+    }
+    .header-section .form-control {
+      max-width: 300px;
+      margin: 0 auto;
+      border-radius: 8px;
+      border: none;
+      padding: 12px 20px;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    .header-section .form-control:focus {
+      border-color: #ffe2f0;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5);
+    }
+    .header-section h5 {
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+    
+    /* TAG BUTTONS */
+    .tag-button {
+      margin: 6px;
+      display: flex;
+      align-items: center;
+      padding: 8px 16px;
+      border-radius: 24px;
+      background-color: #ffffff;
+      color: #ff5f9e;
+      transition: background-color 0.3s, transform 0.3s;
+      cursor: pointer;
+      border: 2px solid #ff9fbd;
+      font-size: 0.95em;
+    }
+    .tag-button i {
+      margin-right: 8px;
+      font-size: 1.1em;
+    }
+    .tag-button.active-tag {
+      background-color: #ffadd2;
+      color: #ffffff;
+      transform: translateY(-2px) scale(1.05);
+      border-color: #ff77b1;
+    }
+
+    /* GENERATE MEALS BUTTON */
+    #pickButton {
+      padding: 12px 24px;
+      font-size: 1em;
+      border-radius: 24px;
+      background-color: #ff5f9e;
+      border: none;
+      color: #ffffff;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    #pickButton:hover {
+      background-color: #f83b84;
+      transform: translateY(-2px);
+    }
+    
+    /* RECIPE CARDS */
+    .recipe-card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.3s, transform 0.2s;
+      margin-bottom: 30px;
+      position: relative;
+    }
+    .recipe-card:hover {
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      transform: translateY(-4px);
+    }
+    
+    /* MEAL CARD STYLING */
+    .recipe-card.meal-card {
+      border-left: 5px solid #ff72ab;
+      padding-top: 48px;
+    }
+    .recipe-card.meal-card h4 {
+      position: absolute;
+      top: -15px;
+      left: 10px;
+      background-color: #ff72ab;
+      color: #ffffff;
+      padding: 5px 10px;
+      border-radius: 50%;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      font-size: 1em;
+    }
+    
+    /* BUBBLES */
+    .recipe-bubbles {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .recipe-bubble {
+      padding: 6px 12px;
+      border-radius: 16px;
+      color: #ffffff;
+      font-size: 0.85em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background-color: #ff72ab;
+      transition: background-color 0.3s;
+    }
+    
+    /* INGREDIENT BOXES */
+    .ingredient-box-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 8px;
+      transition: max-height 0.3s ease;
+    }
+    .ingredient-box-container.collapsed {
+      max-height: 80px;
+      overflow: hidden;
+    }
+    .ingredient-box-container.expanded {
+      max-height: none;
+      overflow: visible;
+    }
+    
+    .ingredient-box {
+      background-color: #ffa3d7;
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      max-width: 220px;
+      word-break: break-word;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      white-space: normal;
+    }
+    .ingredient-box:hover {
+      background-color: #ff89c9;
+      transform: translateY(-2px);
+    }
+    
+    /* TAGS */
+    .recipe-tags {
+      margin-top: 20px;
+    }
+    .recipe-tags .badge {
+      margin: 4px;
+      font-size: 0.85em;
+      padding: 6px 12px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .recipe-tags .badge i {
+      margin-right: 6px;
+      font-size: 1em;
+    }
+    
+    /* GROCERY HAUL */
+    .shopping-list {
+      background-color: #ffffff;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      margin-top: 40px;
+    }
+    .shopping-list h2 {
+      font-weight: 700;
+      color: #212121;
+    }
+    
+    .shopping-aisle-card .card {
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s, transform 0.2s;
+    }
+    .shopping-aisle-card .card:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+      transform: translateY(-2px);
+    }
+    .shopping-aisle-card .card-header {
+      background-color: #ffa3d7;
+      color: #ffffff;
+      font-weight: 600;
+      border-bottom: none;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+    .shopping-aisle-card .card-header.custom-aisle {
+      background-color: #ff6fa7;
+    }
+    .shopping-aisle-card .card-body ul {
+      list-style-type: disc;
+      padding-left: 20px;
+      line-height: 1.6;
+      color: #424242;
+    }
+    
+    /* LOADING SPINNER & ERROR */
+    .loading-spinner {
+      display: none;
+      margin-top: 20px;
+    }
+    .error-message {
+      display: none;
+      margin-top: 20px;
+      color: #d32f2f;
+      font-weight: 500;
+    }
+    
+    /* SEE MORE BUTTON */
+    .see-more-btn {
+      margin-top: 12px;
+      padding: 6px 12px;
+      font-size: 0.9em;
+      border: none;
+      border-radius: 4px;
+      background-color: #ff72ab;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .see-more-btn:hover {
+      background-color: #ff5499;
+    }
+
+    /* SWITCH IT UP BUTTON */
+    .different-meal-btn {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      padding: 6px 12px;
+      font-size: 0.85em;
+      border: none;
+      border-radius: 4px;
+      background-color: #ffae42; /* Fun orange */
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .different-meal-btn:hover {
+      background-color: #ff9800;
+    }
+
+    /* DOWNLOAD BUTTON */
+    #downloadBtn {
+      margin-top: 20px;
+      border-radius: 24px;
+      background-color: #42caff;
+      border: none;
+      color: #ffffff;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    #downloadBtn:hover {
+      background-color: #1db8f7;
+      transform: translateY(-2px);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .ingredient-box {
+        max-width: 100%;
+      }
+      .header-section {
+        padding: 20px;
+      }
+      .recipe-card {
+        padding: 20px;
+      }
+      .shopping-list {
+        padding: 20px;
+      }
+      .tag-button {
+        padding: 6px 12px;
+        font-size: 0.85em;
+      }
+      #pickButton {
+        padding: 10px 20px;
+      }
+      .recipe-bubbles {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .recipe-card.meal-card h4 {
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 4px 8px;
+        font-size: 0.9em;
+      }
+      .recipe-card.meal-card {
+        border-left: none;
+        border-top: 5px solid #ff72ab;
+        padding-top: 20px;
+      }
+      .different-meal-btn {
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages!</p>
+
+  <div class="container">
+    <!-- HEADER SECTION -->
+    <div class="header-section text-center">
+      <h1>What's Cooking?</h1>
+      
+      <!-- Number of Meals Input -->
+      <div class="mb-4">
+        <label for="recipeCount" class="form-label">How Many Meals, Bestie?</label>
+        <input type="number" id="recipeCount" class="form-control w-50 mx-auto" min="1" max="10" value="3">
+      </div>
+      
+      <!-- Tag Buttons -->
+      <div id="tagContainer" class="mb-4">
+        <h5>Choose Your Vibe:</h5>
+        <div id="tags" class="d-flex flex-wrap justify-content-center">
+          <!-- Tag buttons go here -->
+        </div>
+      </div>
+      
+      <!-- Loading Spinner -->
+      <div class="loading-spinner text-center">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      
+      <!-- Error Message -->
+      <div class="error-message text-center">
+        <p>Oh no! Something went wrong. Try again later.</p>
+      </div>
+    </div>
+
+    <!-- Generate Meals Button -->
+    <div class="text-center mb-4">
+      <button id="pickButton" class="btn" style="background-color:#ff5f9e; color:#fff;">Feed Me!</button>
+    </div>
+
+    <!-- Container for Chosen Meals -->
+    <div id="recipeContainer" class="row"></div>
+
+    <!-- Container for the Shopping List -->
+    <div id="shoppingListContainer" class="shopping-list">
+      <h2>Your Grocery Haul</h2>
+      <div class="row" id="shoppingList">
+        <!-- Shopping list aisles inserted here -->
+      </div>
+      <!-- Download Button -->
+      <div class="text-center">
+        <button id="downloadBtn" class="btn btn-secondary">Download My Haul</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Include Papa Parse and JSON5 from CDNs -->
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/json5@2.2.3/dist/index.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom Script -->
+  <script>
+    /****************************************************************
+     * GEN Z THEME, BUT CORE FUNCTIONALITY REMAINS THE SAME
+     ****************************************************************/
+
+    /* GLOBALS */
+    let allRecipes = [];          // All possible recipes from the CSV
+    let allTags = new Set();      // Unique tags for filtering
+    let selectedTags = new Set(); // Tags chosen by the user
+    let chosenMeals = [];         // The current set of generated meals
+
+    // Tag -> Font Awesome icon mapping
+    const tagIconMap = {
+      "vegetarian": "fa-solid fa-leaf",
+      "comfort": "fa-solid fa-heart",
+      "summer": "fa-solid fa-sun",
+      "spicy": "fa-solid fa-pepper-hot",
+      "winter": "fa-solid fa-snowflake",
+      "soup/stew": "fa-solid fa-mug-hot",
+      "asian": "fa-solid fa-bowl-rice",
+      "side": "fa-solid fa-carrot",
+      "seafood": "fa-solid fa-fish-fins",
+      "pasta": "fa-solid fa-bowl-food",
+      "dessert": "fa-solid fa-ice-cream"
+    };
+
+    // Example pastel color map for tags
+    const tagColorMap = {
+      "vegetarian": "#AEC6CF",
+      "comfort": "#FFD1DC",
+      "summer": "#FFB347",
+      "spicy": "#FF6961",
+      "winter": "#CFCFC4",
+      "soup/stew": "#FFB6C1",
+      "asian": "#F49AC2",
+      "side": "#CB99C9",
+      "seafood": "#ADD8E6",
+      "pasta": "#FF8C00",
+      "dessert": "#FADCD9"
+    };
+
+    // Custom sides you had before
+    const customSides = [
+      {
+        title: "Garlicky Green Beans",
+        ingredients: [
+          "2 cups green beans",
+          "3 cloves garlic",
+          "2 tbsp olive oil",
+          "Salt and pepper to taste"
+        ],
+        tags: ["side", "vegetarian"],
+        publisher: "Homemade",
+        preptime: "15 mins",
+        totaltime: "25 mins"
+      },
+      {
+        title: "Brussels Sprouts",
+        ingredients: [
+          "1 lb Brussels sprouts",
+          "2 tbsp balsamic vinegar",
+          "2 tbsp olive oil",
+          "Salt and pepper to taste"
+        ],
+        tags: ["side", "vegetarian"],
+        publisher: "Homemade",
+        preptime: "20 mins",
+        totaltime: "30 mins"
+      }
+    ];
+
+    // CSV link (as before)
+    const csvUrl = "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vSnATjPWRJTrfPXJ-V1w2kZ-FQ2Tzxsh7GPV26amPuI0SKU-iipUKi5C3XogXsm3zYJRlUb0KqMFv9x/pub?gid=1053138978&single=true&output=csv";
+    
+    /********************************************************
+     * 1) LOAD CSV & PARSE INTO allRecipes
+     ********************************************************/
+    window.addEventListener("load", () => {
+      const loadSpinner = document.querySelector(".loading-spinner");
+      const errorMessage = document.querySelector(".error-message");
+  
+      if (loadSpinner) loadSpinner.style.display = "block";
+  
+      Papa.parse(csvUrl, {
+        download: true,
+        header: true,
+        skipEmptyLines: true,
+        complete: (results) => {
+          const rawData = results.data;
+          console.log("CSV Data Loaded:", rawData);
+  
+          allRecipes = rawData.map((row, index) => {
+            // Attempt parse of dictionary_list
+            let parsedDict = [];
+            try {
+              if (!row.dictionary_list) throw new Error("dictionary_list is missing");
+  
+              let dictList = row.dictionary_list.replace(/\bNone\b/g, 'null').trim();
+  
+              // Remove outer quotes/brackets
+              if ((dictList.startsWith('"') && dictList.endsWith('"')) ||
+                  (dictList.startsWith("'") && dictList.endsWith("'"))) {
+                dictList = dictList.slice(1, -1);
+              }
+              if (dictList.startsWith('[') && dictList.endsWith(']')) {
+                dictList = dictList.slice(1, -1);
+              }
+  
+              const entries = dictList.split('}, {').map(e => {
+                if (!e.startsWith('{')) e = '{' + e;
+                if (!e.endsWith('}')) e += '}';
+                return e.trim();
+              });
+              parsedDict = entries.map(e => JSON5.parse(e)).filter(x => x);
+  
+              if (!Array.isArray(parsedDict)) {
+                parsedDict = [parsedDict];
+              }
+  
+              // Standardize dictionary keys
+              parsedDict = parsedDict.map(entry => ({
+                quantity: entry.quantity || entry.Quantity || null,
+                unit: entry.unit || entry.Unit || null,
+                ingredient: entry.ingredient || entry.Ingredient || null,
+                aisle: entry.aisle || entry.Aisle || "Other"
+              }));
+            } catch (err) {
+              console.warn(`Could not parse dictionary_list for row ${index+1}`, err);
+              parsedDict = [];
+            }
+  
+            // Process Ingredients
+            let ingredientsArray = [];
+            if (row.Ingredients) {
+              let delimiter = ';';
+              if (row.Ingredients.includes(',')) delimiter = ',';
+              ingredientsArray = row.Ingredients.split(delimiter)
+                .map(i => i.trim())
+                .filter(i => i);
+            }
+  
+            // Process Tags
+            let tagsArray = [];
+            if (row.Tags) {
+              tagsArray = row.Tags.split(/[,;]/)
+                .map(t => t.trim().toLowerCase().replace(/ /g, '-'))
+                .filter(t => t && t !== "#n/a");
+              tagsArray.forEach(tag => allTags.add(tag));
+            }
+  
+            // Additional fields
+            const { Title, Ingredients, Tags, dictionary_list, ...rest } = row;
+            const needsSide = (rest["Needs_Side"] + "").toLowerCase() === "true";
+  
+            return {
+              title: Title || "(No Title)",
+              ingredients: ingredientsArray,
+              tags: tagsArray,
+              dictionary: parsedDict,
+              publisher: rest.Publisher || "Unknown",
+              preptime: rest["Prep Time"] || rest["PrepTime"] || null,
+              totaltime: rest["Total Time"] || rest["Totaltime"] || null,
+              needsSide,
+              ...rest
+            };
+          });
+  
+          // Add custom sides
+          customSides.forEach(side => {
+            allRecipes.push(side);
+            side.tags.forEach(tag => allTags.add(tag));
+          });
+  
+          if (loadSpinner) loadSpinner.style.display = "none";
+  
+          if (!allRecipes.length) {
+            if (errorMessage) errorMessage.style.display = "block";
+            console.error("No recipes loaded from CSV.");
+          } else {
+            // Render the tag buttons
+            renderTagButtons();
+          }
+        },
+        error: (err) => {
+          console.error("Papa Parse error:", err);
+          if (loadSpinner) loadSpinner.style.display = "none";
+          if (errorMessage) errorMessage.style.display = "block";
+        }
+      });
+    });
+    
+    /********************************************************
+     * 2) RENDER TAG BUTTONS
+     ********************************************************/
+    function renderTagButtons() {
+      const tagContainer = document.getElementById("tags");
+      if (!tagContainer) return;
+      tagContainer.innerHTML = "";
+      
+      if (!allTags.size) {
+        const msg = document.createElement("p");
+        msg.textContent = "No tags found!";
+        tagContainer.appendChild(msg);
+        return;
+      }
+
+      allTags.forEach(tag => {
+        // Skip "entree" from filter
+        if (tag === "entree") return;
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "tag-button";
+        btn.dataset.tag = tag;
+
+        // Icon with Font Awesome
+        const icon = document.createElement("i");
+        icon.className = tagIconMap[tag] || "fa-solid fa-tag";
+
+        const text = document.createElement("span");
+        text.textContent = " " + tag.replace(/-/g, ' ');
+
+        btn.appendChild(icon);
+        btn.appendChild(text);
+
+        btn.addEventListener("click", () => {
+          if (selectedTags.has(tag)) {
+            selectedTags.delete(tag);
+            btn.classList.remove("active-tag");
+          } else {
+            selectedTags.add(tag);
+            btn.classList.add("active-tag");
+          }
+        });
+
+        tagContainer.appendChild(btn);
+      });
+    }
+
+    /********************************************************
+     * 3) PICK RANDOM MEALS
+     ********************************************************/
+    function pickRandomMeals(count = 3) {
+      let entres = allRecipes.filter(r => r.tags.includes("entree"));
+      // Filter by selected tags (OR logic)
+      if (selectedTags.size) {
+        entres = entres.filter(recipe =>
+          Array.from(selectedTags).some(tag => recipe.tags.includes(tag))
+        );
+      }
+      if (!entres.length) return [];
+      entres = shuffleArray(entres);
+
+      const meals = [];
+      for (let i = 0; i < Math.min(count, entres.length); i++) {
+        const entree = entres[i];
+        const meal = { entree, side: null };
+
+        if (entree.needsSide) {
+          let possibleSides = allRecipes.filter(r =>
+            r.tags.includes("side") && r.tags.some(t => entree.tags.includes(t))
+          );
+          possibleSides = possibleSides.concat(customSides);
+          if (possibleSides.length) {
+            const side = possibleSides[Math.floor(Math.random() * possibleSides.length)];
+            meal.side = side;
+          }
+        }
+        meals.push(meal);
+      }
+      return meals;
+    }
+    
+    // Utility to pick just one new entree
+    function pickOneRandomEntree() {
+      let entres = allRecipes.filter(r => r.tags.includes("entree"));
+      if (selectedTags.size) {
+        entres = entres.filter(r =>
+          Array.from(selectedTags).some(tag => r.tags.includes(tag))
+        );
+      }
+      if (!entres.length) return null;
+      entres = shuffleArray(entres);
+      return entres[0];
+    }
+
+    // Shuffling
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    /********************************************************
+     * 4) BUILD SHOPPING LIST
+     ********************************************************/
+    function buildShoppingListFromMeals(meals) {
+      const master = new Map();
+
+      meals.forEach(meal => {
+        const recipes = [meal.entree];
+        if (meal.side) recipes.push(meal.side);
+
+        recipes.forEach(recipe => {
+          if (!recipe.ingredients) return;
+
+          // Check if custom side
+          const isCustomSide = customSides.some(cs => cs.title === recipe.title);
+          if (isCustomSide) {
+            recipe.ingredients.forEach(ing => {
+              const parts = ing.trim().toLowerCase().split(' ');
+              const quantity = parseFloat(parts[0]) || 1;
+              const unit = parts[1] || null;
+              const name = parts.slice(2).join(' ').trim();
+              const aisleName = "Custom";
+              const normUnit = unifyUnit(unit);
+
+              if (!master.has(aisleName)) master.set(aisleName, new Map());
+              const aisleMap = master.get(aisleName);
+
+              if (!aisleMap.has(name)) aisleMap.set(name, new Map());
+              const ingredientMap = aisleMap.get(name);
+
+              if (!normUnit) {
+                const oldQty = ingredientMap.get("count") || 0;
+                ingredientMap.set("count", oldQty + quantity);
+              } else {
+                const oldQty = ingredientMap.get(normUnit) || 0;
+                ingredientMap.set(normUnit, oldQty + quantity);
+              }
+            });
+          } else {
+            if (!Array.isArray(recipe.dictionary)) return;
+            recipe.dictionary.forEach(({quantity, unit, ingredient, aisle}) => {
+              if (!ingredient) return;
+              const name = ingredient.trim().toLowerCase();
+              const normUnit = unifyUnit(unit);
+              const qty = (!quantity || isNaN(quantity)) ? 1 : parseFloat(quantity);
+              const aisleName = (aisle || "Other").trim();
+
+              if (!master.has(aisleName)) master.set(aisleName, new Map());
+              const aisleMap = master.get(aisleName);
+
+              if (!aisleMap.has(name)) aisleMap.set(name, new Map());
+              const ingredientMap = aisleMap.get(name);
+
+              if (!normUnit) {
+                const oldQty = ingredientMap.get("count") || 0;
+                ingredientMap.set("count", oldQty + qty);
+              } else {
+                const oldQty = ingredientMap.get(normUnit) || 0;
+                ingredientMap.set(normUnit, oldQty + qty);
+              }
+            });
+          }
+        });
+      });
+
+      // Convert Map -> array for rendering
+      const finalList = [];
+      master.forEach((aisleMap, aisleName) => {
+        const items = [];
+        aisleMap.forEach((unitMap, ingredientName) => {
+          let line = capitalizeFirstLetter(ingredientName);
+          const units = [];
+          unitMap.forEach((q, u) => {
+            if (u === "count") units.push(`${q}`);
+            else units.push(`${q} ${u}`);
+          });
+          if (units.length === 1) {
+            line += `: ${units[0]}`;
+          } else {
+            line += `: ${units.join(' + ')}`;
+          }
+          items.push(line);
+        });
+        items.sort();
+        finalList.push({ aisle: aisleName, items });
+      });
+      finalList.sort((a, b) => a.aisle.localeCompare(b.aisle));
+      return finalList;
+    }
+
+    // Normalizes units (cup, tablespoon, etc.)
+    function unifyUnit(unit) {
+      if (!unit) return null;
+      const lower = unit.trim().toLowerCase();
+      const map = {
+        "cups": "cup", "cup": "cup",
+        "tablespoons": "tablespoon", "tbsp": "tablespoon",
+        "teaspoons": "teaspoon", "tsp": "teaspoon",
+        "ounces": "ounce", "oz": "ounce",
+        "pounds": "pound", "lb": "pound", "lbs": "pound",
+        "cloves": "clove",
+        "heads": "head",
+        "bunches": "bunch", "bunch": "bunch",
+        "inches": "inch", "inch": "inch",
+        "sticks": "stick",
+        "sheets": "sheet",
+        "sprigs": "sprig",
+        "packs": "pack",
+        "grams": "gram",
+        "kilograms": "kilogram",
+        "milliliters": "milliliter",
+        "liters": "liter",
+        "pints": "pint",
+        "quarts": "quart",
+        "gallons": "gallon"
+      };
+      return map[lower] || lower;
+    }
+
+    /********************************************************
+     * 5) RENDER MEALS
+     ********************************************************/
+    function renderMeals(meals) {
+      const container = document.getElementById("recipeContainer");
+      if (!container) return;
+      container.innerHTML = "";
+
+      if (!meals.length) {
+        const msg = document.createElement("p");
+        msg.textContent = "No meals selected.";
+        container.appendChild(msg);
+        return;
+      }
+
+      meals.forEach((meal, idx) => {
+        const col = document.createElement("div");
+        col.className = "col-lg-6 col-md-12";
+
+        const card = document.createElement("div");
+        card.className = "recipe-card meal-card";
+
+        // Meal number
+        const mealNumber = document.createElement("h4");
+        mealNumber.textContent = `#${idx + 1}`;
+        card.appendChild(mealNumber);
+
+        // "Switch It Up!" button
+        const diffMealBtn = document.createElement("button");
+        diffMealBtn.className = "different-meal-btn";
+        diffMealBtn.textContent = "Switch It Up!";
+        diffMealBtn.addEventListener("click", () => {
+          replaceMeal(idx);
+        });
+        card.appendChild(diffMealBtn);
+
+        // Entree section
+        const entreeSection = document.createElement("div");
+        entreeSection.className = "entree-section";
+        const entreeTitle = document.createElement("h5");
+        entreeTitle.textContent = "Main Dish:";
+        entreeTitle.style.color = "#424242";
+        entreeSection.appendChild(entreeTitle);
+
+        const entreeName = document.createElement("p");
+        entreeName.textContent = meal.entree.title;
+        entreeName.style.fontWeight = "500";
+        entreeName.style.margin = "0";
+        entreeSection.appendChild(entreeName);
+
+        const entreeBubbles = document.createElement("div");
+        entreeBubbles.className = "recipe-bubbles";
+
+        if (meal.entree.publisher && meal.entree.publisher.toLowerCase() !== "unknown") {
+          const pub = document.createElement("span");
+          pub.className = "recipe-bubble publisher";
+          pub.textContent = `Publisher: ${capitalizeFirstLetter(meal.entree.publisher)}`;
+          entreeBubbles.appendChild(pub);
+        }
+        if (meal.entree.preptime) {
+          const prep = document.createElement("span");
+          prep.className = "recipe-bubble preptime";
+          prep.textContent = `Prep: ${meal.entree.preptime}`;
+          entreeBubbles.appendChild(prep);
+        }
+        if (meal.entree.totaltime) {
+          const tot = document.createElement("span");
+          tot.className = "recipe-bubble totaltime";
+          tot.textContent = `Total: ${meal.entree.totaltime}`;
+          entreeBubbles.appendChild(tot);
+        }
+        entreeSection.appendChild(entreeBubbles);
+        card.appendChild(entreeSection);
+
+        // Side section
+        if (meal.side) {
+          const sideSection = document.createElement("div");
+          sideSection.className = "side-section mt-3";
+          const sideTitle = document.createElement("h5");
+          sideTitle.textContent = "On The Side:";
+          sideTitle.style.color = "#424242";
+          sideSection.appendChild(sideTitle);
+
+          const sideName = document.createElement("p");
+          sideName.textContent = meal.side.title;
+          sideName.style.fontWeight = "500";
+          sideName.style.margin = "0";
+          sideSection.appendChild(sideName);
+
+          const sideBubbles = document.createElement("div");
+          sideBubbles.className = "recipe-bubbles";
+
+          if (meal.side.publisher && meal.side.publisher.toLowerCase() !== "unknown") {
+            const pubSide = document.createElement("span");
+            pubSide.className = "recipe-bubble publisher";
+            pubSide.textContent = `Publisher: ${capitalizeFirstLetter(meal.side.publisher)}`;
+            sideBubbles.appendChild(pubSide);
+          }
+          if (meal.side.preptime) {
+            const sp = document.createElement("span");
+            sp.className = "recipe-bubble preptime";
+            sp.textContent = `Prep: ${meal.side.preptime}`;
+            sideBubbles.appendChild(sp);
+          }
+          if (meal.side.totaltime) {
+            const st = document.createElement("span");
+            st.className = "recipe-bubble totaltime";
+            st.textContent = `Total: ${meal.side.totaltime}`;
+            sideBubbles.appendChild(st);
+          }
+          sideSection.appendChild(sideBubbles);
+          card.appendChild(sideSection);
+        }
+
+        // Entree ingredients
+        if (meal.entree.ingredients.length) {
+          const eHeader = document.createElement("h5");
+          eHeader.className = "mt-3 mb-2";
+          eHeader.textContent = "Entree Ingredients:";
+          card.appendChild(eHeader);
+
+          const eContainer = document.createElement("div");
+          eContainer.className = "ingredient-box-container collapsed";
+          meal.entree.ingredients.forEach(ing => {
+            const box = document.createElement("div");
+            box.className = "ingredient-box";
+            box.textContent = ing;
+            eContainer.appendChild(box);
+          });
+          card.appendChild(eContainer);
+        }
+
+        // Side ingredients
+        if (meal.side && meal.side.ingredients.length) {
+          const sHeader = document.createElement("h5");
+          sHeader.className = "mt-3 mb-2";
+          sHeader.textContent = "Side Ingredients:";
+          card.appendChild(sHeader);
+
+          const sContainer = document.createElement("div");
+          sContainer.className = "ingredient-box-container collapsed";
+          meal.side.ingredients.forEach(ing => {
+            const box = document.createElement("div");
+            box.className = "ingredient-box";
+            box.textContent = ing;
+            sContainer.appendChild(box);
+          });
+          card.appendChild(sContainer);
+        }
+
+        // Tags
+        if (meal.entree.tags && meal.entree.tags.length) {
+          const tagsHeader = document.createElement("h5");
+          tagsHeader.className = "mt-4 mb-3";
+          tagsHeader.textContent = "Tags:";
+          card.appendChild(tagsHeader);
+
+          const tagsContainer = document.createElement("div");
+          tagsContainer.className = "recipe-tags";
+
+          meal.entree.tags.forEach(tag => {
+            const tagSpan = document.createElement("span");
+            tagSpan.className = "badge";
+            tagSpan.style.backgroundColor = tagColorMap[tag] || "#6c757d";
+            tagSpan.style.color = "#ffffff";
+
+            const icon = document.createElement("i");
+            icon.className = tagIconMap[tag] || "fa-solid fa-tag";
+            tagSpan.appendChild(icon);
+
+            const txt = document.createElement("span");
+            txt.textContent = " " + capitalizeFirstLetter(tag.replace(/-/g, ' '));
+            tagSpan.appendChild(txt);
+
+            tagsContainer.appendChild(tagSpan);
+          });
+          card.appendChild(tagsContainer);
+        }
+
+        col.appendChild(card);
+        container.appendChild(col);
+      });
+
+      // Now add the "See More" logic
+      attachSeeMoreLogic();
+    }
+
+    // Attach "See More" logic after the DOM is updated
+    function attachSeeMoreLogic() {
+      const allContainers = document.querySelectorAll(".ingredient-box-container");
+      allContainers.forEach(container => {
+        const hasOverflow = container.scrollHeight > 80; // or your desired threshold
+        if (hasOverflow) {
+          // Make sure we have a "see more" button if needed
+          if (!container.nextElementSibling || !container.nextElementSibling.classList.contains("see-more-btn")) {
+            const btn = document.createElement("button");
+            btn.className = "see-more-btn";
+            btn.textContent = "See More";
+            btn.addEventListener("click", () => {
+              const isCollapsed = container.classList.contains("collapsed");
+              container.classList.toggle("collapsed", !isCollapsed);
+              container.classList.toggle("expanded", isCollapsed);
+              btn.textContent = isCollapsed ? "See Less" : "See More";
+            });
+            container.parentNode.insertBefore(btn, container.nextSibling);
+          }
+        } else {
+          container.classList.remove("collapsed");
+        }
+      });
+    }
+
+    // Replacing a single meal
+    function replaceMeal(mealIndex) {
+      const newEntree = pickOneRandomEntree();
+      if (!newEntree) {
+        alert("No alternative entree found for these vibes!");
+        return;
+      }
+      const newMeal = { entree: newEntree, side: null };
+      if (newEntree.needsSide) {
+        let possibleSides = allRecipes.filter(r =>
+          r.tags.includes("side") && r.tags.some(t => newEntree.tags.includes(t))
+        );
+        possibleSides = possibleSides.concat(customSides);
+        if (possibleSides.length) {
+          const side = possibleSides[Math.floor(Math.random() * possibleSides.length)];
+          newMeal.side = side;
+        }
+      }
+      chosenMeals[mealIndex] = newMeal;
+      renderMeals(chosenMeals);
+      const list = buildShoppingListFromMeals(chosenMeals);
+      renderShoppingList(list);
+    }
+
+    /********************************************************
+     * 6) RENDER SHOPPING LIST
+     ********************************************************/
+    function renderShoppingList(shoppingArr) {
+      const container = document.getElementById("shoppingList");
+      if (!container) return;
+      container.innerHTML = "";
+
+      if (!shoppingArr.length) {
+        const msg = document.createElement("p");
+        msg.textContent = "No items in your haul!";
+        container.appendChild(msg);
+        return;
+      }
+
+      const row = document.createElement("div");
+      row.className = "row";
+
+      shoppingArr.forEach(section => {
+        const col = document.createElement("div");
+        col.className = "col-md-6 shopping-aisle-card";
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const cardHeader = document.createElement("div");
+        cardHeader.className = "card-header";
+        if (section.aisle.toLowerCase() === "custom") {
+          cardHeader.classList.add("custom-aisle");
+        }
+        cardHeader.textContent = capitalizeFirstLetter(section.aisle);
+        card.appendChild(cardHeader);
+
+        const cardBody = document.createElement("div");
+        cardBody.className = "card-body p-3";
+
+        const ul = document.createElement("ul");
+        ul.className = "mb-0";
+  
+        section.items.forEach(item => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          ul.appendChild(li);
+        });
+        cardBody.appendChild(ul);
+        card.appendChild(cardBody);
+        col.appendChild(card);
+        row.appendChild(col);
+      });
+
+      container.appendChild(row);
+    }
+
+    /********************************************************
+     * 7) DOWNLOAD SHOPPING LIST
+     ********************************************************/
+    function downloadShoppingListAsTxt(shoppingArr) {
+      if (!shoppingArr.length) {
+        alert("No shopping list to download!");
+        return;
+      }
+      let textContent = "SHOPPING LIST\n\n";
+      shoppingArr.forEach(sec => {
+        textContent += sec.aisle.toUpperCase() + ":\n";
+        sec.items.forEach(item => {
+          textContent += "  - " + item + "\n";
+        });
+        textContent += "\n";
+      });
+      const blob = new Blob([textContent], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "shopping_list.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    /********************************************************
+     * HELPER: CAPITALIZE FIRST LETTER
+     ********************************************************/
+    function capitalizeFirstLetter(s) {
+      if (!s) return "";
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+
+    /********************************************************
+     * 8) SET UP THE BUTTONS
+     ********************************************************/
+    document.addEventListener("DOMContentLoaded", () => {
+      const pickButton = document.getElementById("pickButton");
+      if (pickButton) {
+        pickButton.addEventListener("click", () => {
+          const countInput = document.getElementById("recipeCount");
+          let count = parseInt(countInput.value);
+          if (isNaN(count) || count < 1) {
+            alert("Please enter a valid number of meals!");
+            return;
+          }
+          chosenMeals = pickRandomMeals(count);
+          if (!chosenMeals.length) {
+            alert("No meals found with that vibe!");
+            return;
+          }
+          renderMeals(chosenMeals);
+          const list = buildShoppingListFromMeals(chosenMeals);
+          renderShoppingList(list);
+        });
+      }
+
+      const dlBtn = document.getElementById("downloadBtn");
+      dlBtn.addEventListener("click", () => {
+        const shoppingList = buildShoppingListFromMeals(chosenMeals);
+        downloadShoppingListAsTxt(shoppingList);
+      });
+    });
+  </script>
 </body>
 </html>
