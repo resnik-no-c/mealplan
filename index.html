@@ -6,33 +6,22 @@
   
   <!-- Google Fonts: Poppins (a fun, modern font) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap">
-  
-  <!-- Font Awesome for Icons -->
-<link 
-  rel="stylesheet" 
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-  referrerpolicy="no-referrer"
-/>
 
+  <!-- Font Awesome (no integrity to avoid mismatch errors) -->
+  <link 
+    rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer"
+  />
   
-  <!-- Bootstrap CSS for responsive design -->
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   
   <!-- Custom Styles -->
   <style>
-    /* 
-      ------------------------------------------------------------
-      FUN GEN Z LOOK:
-      - Bright/pastel gradients
-      - Whimsical text
-      - Rounded corners, drop shadows
-      - Font Awesome instead of Material Icons
-      ------------------------------------------------------------
-    */
-
     body {
       padding: 40px 20px;
-      /* Candy-like animated gradient background */
       background: linear-gradient(135deg, #ffc9c0, #ffe0c7, #fff4c2);
       background-size: 200% 200%;
       animation: gradientMove 8s ease infinite;
@@ -52,7 +41,6 @@
 
     /* HEADER SECTION */
     .header-section {
-      /* Vibrant candy-like gradient for the header */
       background: linear-gradient(135deg, #ff8fab, #ffa0ce, #ffc2e3);
       padding: 40px;
       border-radius: 16px;
@@ -144,7 +132,6 @@
       transform: translateY(-4px);
     }
     
-    /* MEAL CARD STYLING */
     .recipe-card.meal-card {
       border-left: 5px solid #ff72ab;
       padding-top: 48px;
@@ -160,6 +147,42 @@
       font-weight: bold;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       font-size: 1em;
+    }
+    
+    /* SWITCH IT UP BUTTON */
+    .different-meal-btn {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      padding: 6px 12px;
+      font-size: 0.85em;
+      border: none;
+      border-radius: 4px;
+      background-color: #ffae42;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .different-meal-btn:hover {
+      background-color: #ff9800;
+    }
+
+    /* DELETE THIS ONE BUTTON */
+    .delete-meal-btn {
+      position: absolute;
+      top: 8px;
+      right: 110px; /* space for Switch It Up btn on the right */
+      padding: 6px 12px;
+      font-size: 0.85em;
+      border: none;
+      border-radius: 4px;
+      background-color: #e53935;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .delete-meal-btn:hover {
+      background-color: #d32f2f;
     }
     
     /* BUBBLES */
@@ -180,7 +203,7 @@
       background-color: #ff72ab;
       transition: background-color 0.3s;
     }
-    
+
     /* INGREDIENT BOXES */
     .ingredient-box-container {
       display: flex;
@@ -237,7 +260,7 @@
       font-size: 1em;
     }
     
-    /* GROCERY HAUL */
+    /* SHOPPING LIST */
     .shopping-list {
       background-color: #ffffff;
       padding: 24px;
@@ -249,7 +272,6 @@
       font-weight: 700;
       color: #212121;
     }
-    
     .shopping-aisle-card .card {
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -271,12 +293,24 @@
       background-color: #ff6fa7;
     }
     .shopping-aisle-card .card-body ul {
-      list-style-type: disc;
-      padding-left: 20px;
+      list-style-type: none;
+      padding-left: 0;
       line-height: 1.6;
       color: #424242;
     }
-    
+    .shopping-aisle-card li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+    }
+    .shopping-aisle-card li input[type="checkbox"] {
+      margin-right: 0.8rem;
+    }
+    .shopping-aisle-card li.strikethrough {
+      text-decoration: line-through;
+      color: #999999;
+    }
+
     /* LOADING SPINNER & ERROR */
     .loading-spinner {
       display: none;
@@ -305,24 +339,6 @@
       background-color: #ff5499;
     }
 
-    /* SWITCH IT UP BUTTON */
-    .different-meal-btn {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      padding: 6px 12px;
-      font-size: 0.85em;
-      border: none;
-      border-radius: 4px;
-      background-color: #ffae42; /* Fun orange */
-      color: #ffffff;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .different-meal-btn:hover {
-      background-color: #ff9800;
-    }
-
     /* DOWNLOAD BUTTON */
     #downloadBtn {
       margin-top: 20px;
@@ -335,6 +351,30 @@
     #downloadBtn:hover {
       background-color: #1db8f7;
       transform: translateY(-2px);
+    }
+
+    /* ADD RECIPE CARD */
+    .add-recipe-card {
+      border-left: 5px dashed #aaa;
+      background-color: #fff8fc;
+      opacity: 0.9;
+    }
+    .add-recipe-card h4 {
+      color: #a66;
+    }
+    .add-recipe-btn {
+      margin-top: 12px;
+      padding: 6px 12px;
+      font-size: 0.9em;
+      border: none;
+      border-radius: 4px;
+      background-color: #ff72ab;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .add-recipe-btn:hover {
+      background-color: #ff5499;
     }
 
     /* RESPONSIVE */
@@ -378,6 +418,10 @@
         top: 10px;
         right: 10px;
       }
+      .delete-meal-btn {
+        top: 10px;
+        right: 110px;
+      }
     }
   </style>
 </head>
@@ -395,11 +439,17 @@
       </div>
       
       <!-- Tag Buttons -->
-      <div id="tagContainer" class="mb-4">
+      <div id="tagContainer" class="mb-2">
         <h5>Choose Your Vibe:</h5>
         <div id="tags" class="d-flex flex-wrap justify-content-center">
           <!-- Tag buttons go here -->
         </div>
+      </div>
+
+      <!-- Vegetarian Only Checkbox -->
+      <div class="form-check form-switch d-flex justify-content-center align-items-center mb-4">
+        <input class="form-check-input" type="checkbox" id="vegetarianOnlyToggle" style="margin-right:12px;">
+        <label class="form-check-label text-white" for="vegetarianOnlyToggle">Vegetarian Only</label>
       </div>
       
       <!-- Loading Spinner -->
@@ -436,7 +486,12 @@
     </div>
   </div>
 
-  <!-- Include Papa Parse and JSON5 from CDNs -->
+  <!-- Datalist for "Add a Recipe" auto-complete -->
+  <datalist id="recipeTitleOptions">
+    <!-- We'll fill this with all recipe titles in JS -->
+  </datalist>
+
+  <!-- Include Papa Parse and JSON5 -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/json5@2.2.3/dist/index.min.js"></script>
   <!-- Bootstrap JS -->
@@ -444,23 +499,19 @@
   
   <!-- Custom Script -->
   <script>
-    /****************************************************************
-     * GEN Z THEME, BUT CORE FUNCTIONALITY REMAINS THE SAME
-     ****************************************************************/
-
     /* GLOBALS */
-    let allRecipes = [];          // All possible recipes from the CSV
-    let allTags = new Set();      // Unique tags for filtering
-    let selectedTags = new Set(); // Tags chosen by the user
-    let chosenMeals = [];         // The current set of generated meals
+    let allRecipes = [];
+    let allTags = new Set();
+    let selectedTags = new Set();
+    let chosenMeals = [];
+    let vegetarianOnly = false;
 
-    // Tag -> Font Awesome icon mapping
     const tagIconMap = {
       "vegetarian": "fa-solid fa-leaf",
       "comfort": "fa-solid fa-heart",
-      "summer": "fa-solid fa-sun",
+      "seasonal-summer": "fa-solid fa-sun",
       "spicy": "fa-solid fa-pepper-hot",
-      "winter": "fa-solid fa-snowflake",
+      "seasonal-winter": "fa-solid fa-snowflake",
       "soup/stew": "fa-solid fa-mug-hot",
       "asian": "fa-solid fa-bowl-rice",
       "side": "fa-solid fa-carrot",
@@ -468,14 +519,12 @@
       "pasta": "fa-solid fa-bowl-food",
       "dessert": "fa-solid fa-ice-cream"
     };
-
-    // Example pastel color map for tags
     const tagColorMap = {
       "vegetarian": "#AEC6CF",
       "comfort": "#FFD1DC",
-      "summer": "#FFB347",
+      "seasonal-summer": "#FFB347",
       "spicy": "#FF6961",
-      "winter": "#CFCFC4",
+      "seasonal-winter": "#CFCFC4",
       "soup/stew": "#FFB6C1",
       "asian": "#F49AC2",
       "side": "#CB99C9",
@@ -484,7 +533,7 @@
       "dessert": "#FADCD9"
     };
 
-    // Custom sides you had before
+    // We assume "PublisherLink" is in the CSV for blog links
     const customSides = [
       {
         title: "Garlicky Green Beans",
@@ -514,12 +563,8 @@
       }
     ];
 
-    // CSV link (as before)
     const csvUrl = "https://cors-anywhere.herokuapp.com/https://docs.google.com/spreadsheets/d/e/2PACX-1vSnATjPWRJTrfPXJ-V1w2kZ-FQ2Tzxsh7GPV26amPuI0SKU-iipUKi5C3XogXsm3zYJRlUb0KqMFv9x/pub?gid=1053138978&single=true&output=csv";
-    
-    /********************************************************
-     * 1) LOAD CSV & PARSE INTO allRecipes
-     ********************************************************/
+
     window.addEventListener("load", () => {
       const loadSpinner = document.querySelector(".loading-spinner");
       const errorMessage = document.querySelector(".error-message");
@@ -531,18 +576,15 @@
         header: true,
         skipEmptyLines: true,
         complete: (results) => {
+          if (loadSpinner) loadSpinner.style.display = "none";
           const rawData = results.data;
-          console.log("CSV Data Loaded:", rawData);
   
           allRecipes = rawData.map((row, index) => {
-            // Attempt parse of dictionary_list
             let parsedDict = [];
             try {
-              if (!row.dictionary_list) throw new Error("dictionary_list is missing");
+              if (!row.dictionary_list) throw new Error("dictionary_list missing");
   
               let dictList = row.dictionary_list.replace(/\bNone\b/g, 'null').trim();
-  
-              // Remove outer quotes/brackets
               if ((dictList.startsWith('"') && dictList.endsWith('"')) ||
                   (dictList.startsWith("'") && dictList.endsWith("'"))) {
                 dictList = dictList.slice(1, -1);
@@ -556,8 +598,8 @@
                 if (!e.endsWith('}')) e += '}';
                 return e.trim();
               });
-              parsedDict = entries.map(e => JSON5.parse(e)).filter(x => x);
   
+              parsedDict = entries.map(e => JSON5.parse(e)).filter(x => x);
               if (!Array.isArray(parsedDict)) {
                 parsedDict = [parsedDict];
               }
@@ -569,12 +611,11 @@
                 ingredient: entry.ingredient || entry.Ingredient || null,
                 aisle: entry.aisle || entry.Aisle || "Other"
               }));
+  
             } catch (err) {
-              console.warn(`Could not parse dictionary_list for row ${index+1}`, err);
               parsedDict = [];
             }
-  
-            // Process Ingredients
+
             let ingredientsArray = [];
             if (row.Ingredients) {
               let delimiter = ';';
@@ -583,8 +624,7 @@
                 .map(i => i.trim())
                 .filter(i => i);
             }
-  
-            // Process Tags
+
             let tagsArray = [];
             if (row.Tags) {
               tagsArray = row.Tags.split(/[,;]/)
@@ -592,21 +632,19 @@
                 .filter(t => t && t !== "#n/a");
               tagsArray.forEach(tag => allTags.add(tag));
             }
-  
-            // Additional fields
-            const { Title, Ingredients, Tags, dictionary_list, ...rest } = row;
-            const needsSide = (rest["Needs_Side"] + "").toLowerCase() === "true";
-  
+
+            const needsSide = (row["Needs_Side"] + "").toLowerCase() === "true";
+
             return {
-              title: Title || "(No Title)",
+              title: row.Title || "(No Title)",
               ingredients: ingredientsArray,
               tags: tagsArray,
               dictionary: parsedDict,
-              publisher: rest.Publisher || "Unknown",
-              preptime: rest["Prep Time"] || rest["PrepTime"] || null,
-              totaltime: rest["Total Time"] || rest["Totaltime"] || null,
-              needsSide,
-              ...rest
+              publisher: row.Publisher || "Unknown",
+              publisherLink: row.PublisherLink || "",
+              preptime: row["Prep Time"] || row["PrepTime"] || null,
+              totaltime: row["Total Time"] || row["Totaltime"] || null,
+              needsSide
             };
           });
   
@@ -616,14 +654,11 @@
             side.tags.forEach(tag => allTags.add(tag));
           });
   
-          if (loadSpinner) loadSpinner.style.display = "none";
-  
           if (!allRecipes.length) {
             if (errorMessage) errorMessage.style.display = "block";
-            console.error("No recipes loaded from CSV.");
           } else {
-            // Render the tag buttons
             renderTagButtons();
+            populateRecipeDatalist();
           }
         },
         error: (err) => {
@@ -633,10 +668,8 @@
         }
       });
     });
-    
-    /********************************************************
-     * 2) RENDER TAG BUTTONS
-     ********************************************************/
+
+    /* TAG BUTTONS */
     function renderTagButtons() {
       const tagContainer = document.getElementById("tags");
       if (!tagContainer) return;
@@ -650,15 +683,13 @@
       }
 
       allTags.forEach(tag => {
-        // Skip "entree" from filter
-        if (tag === "entree") return;
+        if (tag === "entree") return; // skip "entree"
 
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "tag-button";
         btn.dataset.tag = tag;
 
-        // Icon with Font Awesome
         const icon = document.createElement("i");
         icon.className = tagIconMap[tag] || "fa-solid fa-tag";
 
@@ -682,12 +713,20 @@
       });
     }
 
-    /********************************************************
-     * 3) PICK RANDOM MEALS
-     ********************************************************/
+    /* VEG ONLY CHECKBOX */
+    const vegToggle = document.getElementById("vegetarianOnlyToggle");
+    vegToggle.addEventListener("change", () => {
+      vegetarianOnly = vegToggle.checked;
+    });
+
+    /* PICK RANDOM MEALS */
     function pickRandomMeals(count = 3) {
       let entres = allRecipes.filter(r => r.tags.includes("entree"));
-      // Filter by selected tags (OR logic)
+
+      if (vegetarianOnly) {
+        entres = entres.filter(r => r.tags.includes("vegetarian"));
+      }
+
       if (selectedTags.size) {
         entres = entres.filter(recipe =>
           Array.from(selectedTags).some(tag => recipe.tags.includes(tag))
@@ -715,21 +754,7 @@
       }
       return meals;
     }
-    
-    // Utility to pick just one new entree
-    function pickOneRandomEntree() {
-      let entres = allRecipes.filter(r => r.tags.includes("entree"));
-      if (selectedTags.size) {
-        entres = entres.filter(r =>
-          Array.from(selectedTags).some(tag => r.tags.includes(tag))
-        );
-      }
-      if (!entres.length) return null;
-      entres = shuffleArray(entres);
-      return entres[0];
-    }
 
-    // Shuffling
     function shuffleArray(arr) {
       const copy = [...arr];
       for (let i = copy.length - 1; i > 0; i--) {
@@ -739,9 +764,52 @@
       return copy;
     }
 
-    /********************************************************
-     * 4) BUILD SHOPPING LIST
-     ********************************************************/
+    /* REPLACE SINGLE MEAL */
+    function replaceMeal(mealIndex) {
+      let entres = allRecipes.filter(r => r.tags.includes("entree"));
+      if (vegetarianOnly) {
+        entres = entres.filter(r => r.tags.includes("vegetarian"));
+      }
+      if (selectedTags.size) {
+        entres = entres.filter(r =>
+          Array.from(selectedTags).some(tag => r.tags.includes(tag))
+        );
+      }
+      if (!entres.length) {
+        alert("No alternative entree available with current filters!");
+        return;
+      }
+      entres = shuffleArray(entres);
+      const newEntree = entres[0];
+      const newMeal = { entree: newEntree, side: null };
+
+      if (newEntree.needsSide) {
+        let possibleSides = allRecipes.filter(r =>
+          r.tags.includes("side") && r.tags.some(t => newEntree.tags.includes(t))
+        );
+        possibleSides = possibleSides.concat(customSides);
+        if (possibleSides.length) {
+          const side = possibleSides[Math.floor(Math.random() * possibleSides.length)];
+          newMeal.side = side;
+        }
+      }
+      chosenMeals[mealIndex] = newMeal;
+      renderMeals(chosenMeals);
+      const list = buildShoppingListFromMeals(chosenMeals);
+      renderShoppingList(list);
+    }
+
+    /* DELETE THIS ONE */
+    function deleteMeal(mealIndex) {
+      if (mealIndex < 0 || mealIndex >= chosenMeals.length) return;
+      chosenMeals.splice(mealIndex, 1); // remove the meal
+      // Re-render
+      renderMeals(chosenMeals);
+      const list = buildShoppingListFromMeals(chosenMeals);
+      renderShoppingList(list);
+    }
+
+    /* BUILD SHOPPING LIST */
     function buildShoppingListFromMeals(meals) {
       const master = new Map();
 
@@ -751,31 +819,10 @@
 
         recipes.forEach(recipe => {
           if (!recipe.ingredients) return;
-
-          // Check if custom side
           const isCustomSide = customSides.some(cs => cs.title === recipe.title);
           if (isCustomSide) {
             recipe.ingredients.forEach(ing => {
-              const parts = ing.trim().toLowerCase().split(' ');
-              const quantity = parseFloat(parts[0]) || 1;
-              const unit = parts[1] || null;
-              const name = parts.slice(2).join(' ').trim();
-              const aisleName = "Custom";
-              const normUnit = unifyUnit(unit);
-
-              if (!master.has(aisleName)) master.set(aisleName, new Map());
-              const aisleMap = master.get(aisleName);
-
-              if (!aisleMap.has(name)) aisleMap.set(name, new Map());
-              const ingredientMap = aisleMap.get(name);
-
-              if (!normUnit) {
-                const oldQty = ingredientMap.get("count") || 0;
-                ingredientMap.set("count", oldQty + quantity);
-              } else {
-                const oldQty = ingredientMap.get(normUnit) || 0;
-                ingredientMap.set(normUnit, oldQty + quantity);
-              }
+              parseCustomSideIngredient(ing, master);
             });
           } else {
             if (!Array.isArray(recipe.dictionary)) return;
@@ -788,7 +835,6 @@
 
               if (!master.has(aisleName)) master.set(aisleName, new Map());
               const aisleMap = master.get(aisleName);
-
               if (!aisleMap.has(name)) aisleMap.set(name, new Map());
               const ingredientMap = aisleMap.get(name);
 
@@ -804,7 +850,6 @@
         });
       });
 
-      // Convert Map -> array for rendering
       const finalList = [];
       master.forEach((aisleMap, aisleName) => {
         const items = [];
@@ -829,7 +874,29 @@
       return finalList;
     }
 
-    // Normalizes units (cup, tablespoon, etc.)
+    function parseCustomSideIngredient(line, masterMap) {
+      const parts = line.trim().toLowerCase().split(' ');
+      const quantity = parseFloat(parts[0]) || 1;
+      const unit = parts[1] || null;
+      const ingredientName = parts.slice(2).join(' ').trim();
+      const aisleName = "Custom";
+      const normUnit = unifyUnit(unit);
+
+      if (!masterMap.has(aisleName)) masterMap.set(aisleName, new Map());
+      const aisleMap = masterMap.get(aisleName);
+
+      if (!aisleMap.has(ingredientName)) aisleMap.set(ingredientName, new Map());
+      const ingredientMap = aisleMap.get(ingredientName);
+
+      if (!normUnit) {
+        const oldQty = ingredientMap.get("count") || 0;
+        ingredientMap.set("count", oldQty + quantity);
+      } else {
+        const oldQty = ingredientMap.get(normUnit) || 0;
+        ingredientMap.set(normUnit, oldQty + quantity);
+      }
+    }
+
     function unifyUnit(unit) {
       if (!unit) return null;
       const lower = unit.trim().toLowerCase();
@@ -858,9 +925,7 @@
       return map[lower] || lower;
     }
 
-    /********************************************************
-     * 5) RENDER MEALS
-     ********************************************************/
+    /* RENDER MEALS */
     function renderMeals(meals) {
       const container = document.getElementById("recipeContainer");
       if (!container) return;
@@ -870,188 +935,252 @@
         const msg = document.createElement("p");
         msg.textContent = "No meals selected.";
         container.appendChild(msg);
-        return;
+      } else {
+        meals.forEach((meal, idx) => {
+          const col = document.createElement("div");
+          col.className = "col-lg-6 col-md-12";
+
+          const card = document.createElement("div");
+          card.className = "recipe-card meal-card";
+
+          // Meal number
+          const mealNumber = document.createElement("h4");
+          mealNumber.textContent = `#${idx + 1}`;
+          card.appendChild(mealNumber);
+
+          // Switch It Up button
+          const diffMealBtn = document.createElement("button");
+          diffMealBtn.className = "different-meal-btn";
+          diffMealBtn.textContent = "Switch It Up!";
+          diffMealBtn.addEventListener("click", () => {
+            replaceMeal(idx);
+          });
+          card.appendChild(diffMealBtn);
+
+          // Delete This One button
+          const deleteMealBtn = document.createElement("button");
+          deleteMealBtn.className = "delete-meal-btn";
+          deleteMealBtn.textContent = "Delete This One";
+          deleteMealBtn.addEventListener("click", () => {
+            deleteMeal(idx);
+          });
+          card.appendChild(deleteMealBtn);
+
+          // Entree
+          const entreeSection = document.createElement("div");
+          entreeSection.className = "entree-section";
+          const entreeTitle = document.createElement("h5");
+          entreeTitle.textContent = "Main Dish:";
+          entreeTitle.style.color = "#424242";
+          entreeSection.appendChild(entreeTitle);
+
+          const entreeName = document.createElement("p");
+          entreeName.style.fontWeight = "500";
+          entreeName.style.margin = "0";
+
+          // Blog publisher => hyperlink
+          if (meal.entree.publisher === "Blog" && meal.entree.publisherLink) {
+            const anchor = document.createElement("a");
+            anchor.href = meal.entree.publisherLink;
+            anchor.target = "_blank";
+            anchor.rel = "noopener";
+            anchor.style.color = "#ff72ab";
+            anchor.style.textDecoration = "underline";
+            anchor.textContent = meal.entree.title;
+            entreeName.appendChild(anchor);
+          } else {
+            entreeName.textContent = meal.entree.title;
+          }
+          entreeSection.appendChild(entreeName);
+
+          const entreeBubbles = document.createElement("div");
+          entreeBubbles.className = "recipe-bubbles";
+
+          if (meal.entree.publisher && meal.entree.publisher.toLowerCase() !== "unknown" && meal.entree.publisher !== "Blog") {
+            const pub = document.createElement("span");
+            pub.className = "recipe-bubble publisher";
+            pub.textContent = `Publisher: ${capitalizeFirstLetter(meal.entree.publisher)}`;
+            entreeBubbles.appendChild(pub);
+          }
+          if (meal.entree.preptime) {
+            const prep = document.createElement("span");
+            prep.className = "recipe-bubble preptime";
+            prep.textContent = `Prep: ${meal.entree.preptime}`;
+            entreeBubbles.appendChild(prep);
+          }
+          if (meal.entree.totaltime) {
+            const tot = document.createElement("span");
+            tot.className = "recipe-bubble totaltime";
+            tot.textContent = `Total: ${meal.entree.totaltime}`;
+            entreeBubbles.appendChild(tot);
+          }
+          entreeSection.appendChild(entreeBubbles);
+          card.appendChild(entreeSection);
+
+          // Side
+          if (meal.side) {
+            const sideSection = document.createElement("div");
+            sideSection.className = "side-section mt-3";
+            const sideTitle = document.createElement("h5");
+            sideTitle.textContent = "On The Side:";
+            sideTitle.style.color = "#424242";
+            sideSection.appendChild(sideTitle);
+
+            const sideName = document.createElement("p");
+            sideName.style.fontWeight = "500";
+            sideName.style.margin = "0";
+            sideName.textContent = meal.side.title;
+            sideSection.appendChild(sideName);
+
+            const sideBubbles = document.createElement("div");
+            sideBubbles.className = "recipe-bubbles";
+
+            if (meal.side.publisher && meal.side.publisher.toLowerCase() !== "unknown") {
+              const pubSide = document.createElement("span");
+              pubSide.className = "recipe-bubble publisher";
+              pubSide.textContent = `Publisher: ${capitalizeFirstLetter(meal.side.publisher)}`;
+              sideBubbles.appendChild(pubSide);
+            }
+            if (meal.side.preptime) {
+              const sp = document.createElement("span");
+              sp.className = "recipe-bubble preptime";
+              sp.textContent = `Prep: ${meal.side.preptime}`;
+              sideBubbles.appendChild(sp);
+            }
+            if (meal.side.totaltime) {
+              const st = document.createElement("span");
+              st.className = "recipe-bubble totaltime";
+              st.textContent = `Total: ${meal.side.totaltime}`;
+              sideBubbles.appendChild(st);
+            }
+            sideSection.appendChild(sideBubbles);
+            card.appendChild(sideSection);
+          }
+
+          // Entree ingredients
+          if (meal.entree.ingredients && meal.entree.ingredients.length) {
+            const eHeader = document.createElement("h5");
+            eHeader.className = "mt-3 mb-2";
+            eHeader.textContent = "Entree Ingredients:";
+            card.appendChild(eHeader);
+
+            const eContainer = document.createElement("div");
+            eContainer.className = "ingredient-box-container collapsed";
+            meal.entree.ingredients.forEach(ing => {
+              const box = document.createElement("div");
+              box.className = "ingredient-box";
+              box.textContent = ing;
+              eContainer.appendChild(box);
+            });
+            card.appendChild(eContainer);
+          }
+
+          // Side ingredients
+          if (meal.side && meal.side.ingredients && meal.side.ingredients.length) {
+            const sHeader = document.createElement("h5");
+            sHeader.className = "mt-3 mb-2";
+            sHeader.textContent = "Side Ingredients:";
+            card.appendChild(sHeader);
+
+            const sContainer = document.createElement("div");
+            sContainer.className = "ingredient-box-container collapsed";
+            meal.side.ingredients.forEach(ing => {
+              const box = document.createElement("div");
+              box.className = "ingredient-box";
+              box.textContent = ing;
+              sContainer.appendChild(box);
+            });
+            card.appendChild(sContainer);
+          }
+
+          // Tags
+          if (meal.entree.tags && meal.entree.tags.length) {
+            const tagsHeader = document.createElement("h5");
+            tagsHeader.className = "mt-4 mb-3";
+            tagsHeader.textContent = "Tags:";
+            card.appendChild(tagsHeader);
+
+            const tagsContainer = document.createElement("div");
+            tagsContainer.className = "recipe-tags";
+
+            meal.entree.tags.forEach(tag => {
+              const tagSpan = document.createElement("span");
+              tagSpan.className = "badge";
+              tagSpan.style.backgroundColor = tagColorMap[tag] || "#6c757d";
+              tagSpan.style.color = "#ffffff";
+
+              const icon = document.createElement("i");
+              icon.className = tagIconMap[tag] || "fa-solid fa-tag";
+              tagSpan.appendChild(icon);
+
+              const txt = document.createElement("span");
+              txt.textContent = " " + capitalizeFirstLetter(tag.replace(/-/g, ' '));
+              tagSpan.appendChild(txt);
+
+              tagsContainer.appendChild(tagSpan);
+            });
+            card.appendChild(tagsContainer);
+          }
+
+          col.appendChild(card);
+          container.appendChild(col);
+        });
       }
 
-      meals.forEach((meal, idx) => {
-        const col = document.createElement("div");
-        col.className = "col-lg-6 col-md-12";
-
-        const card = document.createElement("div");
-        card.className = "recipe-card meal-card";
-
-        // Meal number
-        const mealNumber = document.createElement("h4");
-        mealNumber.textContent = `#${idx + 1}`;
-        card.appendChild(mealNumber);
-
-        // "Switch It Up!" button
-        const diffMealBtn = document.createElement("button");
-        diffMealBtn.className = "different-meal-btn";
-        diffMealBtn.textContent = "Switch It Up!";
-        diffMealBtn.addEventListener("click", () => {
-          replaceMeal(idx);
-        });
-        card.appendChild(diffMealBtn);
-
-        // Entree section
-        const entreeSection = document.createElement("div");
-        entreeSection.className = "entree-section";
-        const entreeTitle = document.createElement("h5");
-        entreeTitle.textContent = "Main Dish:";
-        entreeTitle.style.color = "#424242";
-        entreeSection.appendChild(entreeTitle);
-
-        const entreeName = document.createElement("p");
-        entreeName.textContent = meal.entree.title;
-        entreeName.style.fontWeight = "500";
-        entreeName.style.margin = "0";
-        entreeSection.appendChild(entreeName);
-
-        const entreeBubbles = document.createElement("div");
-        entreeBubbles.className = "recipe-bubbles";
-
-        if (meal.entree.publisher && meal.entree.publisher.toLowerCase() !== "unknown") {
-          const pub = document.createElement("span");
-          pub.className = "recipe-bubble publisher";
-          pub.textContent = `Publisher: ${capitalizeFirstLetter(meal.entree.publisher)}`;
-          entreeBubbles.appendChild(pub);
-        }
-        if (meal.entree.preptime) {
-          const prep = document.createElement("span");
-          prep.className = "recipe-bubble preptime";
-          prep.textContent = `Prep: ${meal.entree.preptime}`;
-          entreeBubbles.appendChild(prep);
-        }
-        if (meal.entree.totaltime) {
-          const tot = document.createElement("span");
-          tot.className = "recipe-bubble totaltime";
-          tot.textContent = `Total: ${meal.entree.totaltime}`;
-          entreeBubbles.appendChild(tot);
-        }
-        entreeSection.appendChild(entreeBubbles);
-        card.appendChild(entreeSection);
-
-        // Side section
-        if (meal.side) {
-          const sideSection = document.createElement("div");
-          sideSection.className = "side-section mt-3";
-          const sideTitle = document.createElement("h5");
-          sideTitle.textContent = "On The Side:";
-          sideTitle.style.color = "#424242";
-          sideSection.appendChild(sideTitle);
-
-          const sideName = document.createElement("p");
-          sideName.textContent = meal.side.title;
-          sideName.style.fontWeight = "500";
-          sideName.style.margin = "0";
-          sideSection.appendChild(sideName);
-
-          const sideBubbles = document.createElement("div");
-          sideBubbles.className = "recipe-bubbles";
-
-          if (meal.side.publisher && meal.side.publisher.toLowerCase() !== "unknown") {
-            const pubSide = document.createElement("span");
-            pubSide.className = "recipe-bubble publisher";
-            pubSide.textContent = `Publisher: ${capitalizeFirstLetter(meal.side.publisher)}`;
-            sideBubbles.appendChild(pubSide);
-          }
-          if (meal.side.preptime) {
-            const sp = document.createElement("span");
-            sp.className = "recipe-bubble preptime";
-            sp.textContent = `Prep: ${meal.side.preptime}`;
-            sideBubbles.appendChild(sp);
-          }
-          if (meal.side.totaltime) {
-            const st = document.createElement("span");
-            st.className = "recipe-bubble totaltime";
-            st.textContent = `Total: ${meal.side.totaltime}`;
-            sideBubbles.appendChild(st);
-          }
-          sideSection.appendChild(sideBubbles);
-          card.appendChild(sideSection);
-        }
-
-        // Entree ingredients
-        if (meal.entree.ingredients.length) {
-          const eHeader = document.createElement("h5");
-          eHeader.className = "mt-3 mb-2";
-          eHeader.textContent = "Entree Ingredients:";
-          card.appendChild(eHeader);
-
-          const eContainer = document.createElement("div");
-          eContainer.className = "ingredient-box-container collapsed";
-          meal.entree.ingredients.forEach(ing => {
-            const box = document.createElement("div");
-            box.className = "ingredient-box";
-            box.textContent = ing;
-            eContainer.appendChild(box);
-          });
-          card.appendChild(eContainer);
-        }
-
-        // Side ingredients
-        if (meal.side && meal.side.ingredients.length) {
-          const sHeader = document.createElement("h5");
-          sHeader.className = "mt-3 mb-2";
-          sHeader.textContent = "Side Ingredients:";
-          card.appendChild(sHeader);
-
-          const sContainer = document.createElement("div");
-          sContainer.className = "ingredient-box-container collapsed";
-          meal.side.ingredients.forEach(ing => {
-            const box = document.createElement("div");
-            box.className = "ingredient-box";
-            box.textContent = ing;
-            sContainer.appendChild(box);
-          });
-          card.appendChild(sContainer);
-        }
-
-        // Tags
-        if (meal.entree.tags && meal.entree.tags.length) {
-          const tagsHeader = document.createElement("h5");
-          tagsHeader.className = "mt-4 mb-3";
-          tagsHeader.textContent = "Tags:";
-          card.appendChild(tagsHeader);
-
-          const tagsContainer = document.createElement("div");
-          tagsContainer.className = "recipe-tags";
-
-          meal.entree.tags.forEach(tag => {
-            const tagSpan = document.createElement("span");
-            tagSpan.className = "badge";
-            tagSpan.style.backgroundColor = tagColorMap[tag] || "#6c757d";
-            tagSpan.style.color = "#ffffff";
-
-            const icon = document.createElement("i");
-            icon.className = tagIconMap[tag] || "fa-solid fa-tag";
-            tagSpan.appendChild(icon);
-
-            const txt = document.createElement("span");
-            txt.textContent = " " + capitalizeFirstLetter(tag.replace(/-/g, ' '));
-            tagSpan.appendChild(txt);
-
-            tagsContainer.appendChild(tagSpan);
-          });
-          card.appendChild(tagsContainer);
-        }
-
-        col.appendChild(card);
-        container.appendChild(col);
-      });
-
-      // Now add the "See More" logic
+      // Add "Add a Recipe" card
+      addRecipeCard();
       attachSeeMoreLogic();
     }
 
-    // Attach "See More" logic after the DOM is updated
+    /* ADD RECIPE CARD */
+    function addRecipeCard() {
+      const container = document.getElementById("recipeContainer");
+      const col = document.createElement("div");
+      col.className = "col-lg-6 col-md-12";
+
+      const card = document.createElement("div");
+      card.className = "recipe-card add-recipe-card";
+
+      const title = document.createElement("h4");
+      title.textContent = "Add a Recipe";
+      card.appendChild(title);
+
+      const label = document.createElement("label");
+      label.textContent = "Search by Title:";
+      label.style.fontWeight = "500";
+      card.appendChild(label);
+
+      const input = document.createElement("input");
+      input.type = "text";
+      input.setAttribute("list", "recipeTitleOptions");
+      input.className = "form-control mt-2";
+      input.placeholder = "Type a recipe title...";
+      card.appendChild(input);
+
+      const btn = document.createElement("button");
+      btn.className = "add-recipe-btn";
+      btn.textContent = "Add This Recipe";
+      btn.addEventListener("click", () => {
+        const recipeTitle = input.value.trim();
+        if (!recipeTitle) {
+          alert("Please enter a recipe title!");
+          return;
+        }
+        addRecipeByTitle(recipeTitle);
+        input.value = "";
+      });
+      card.appendChild(btn);
+
+      col.appendChild(card);
+      container.appendChild(col);
+    }
+
+    /* SEE MORE LOGIC */
     function attachSeeMoreLogic() {
       const allContainers = document.querySelectorAll(".ingredient-box-container");
       allContainers.forEach(container => {
-        const hasOverflow = container.scrollHeight > 80; // or your desired threshold
+        const hasOverflow = container.scrollHeight > 80;
         if (hasOverflow) {
-          // Make sure we have a "see more" button if needed
           if (!container.nextElementSibling || !container.nextElementSibling.classList.contains("see-more-btn")) {
             const btn = document.createElement("button");
             btn.className = "see-more-btn";
@@ -1070,33 +1199,42 @@
       });
     }
 
-    // Replacing a single meal
-    function replaceMeal(mealIndex) {
-      const newEntree = pickOneRandomEntree();
-      if (!newEntree) {
-        alert("No alternative entree found for these vibes!");
+    /* RECIPE DATALIST */
+    function populateRecipeDatalist() {
+      const dataList = document.getElementById("recipeTitleOptions");
+      dataList.innerHTML = "";
+      allRecipes.forEach(r => {
+        const opt = document.createElement("option");
+        opt.value = r.title;
+        dataList.appendChild(opt);
+      });
+    }
+
+    /* ADD RECIPE BY TITLE */
+    function addRecipeByTitle(title) {
+      const recipe = allRecipes.find(r => r.title.toLowerCase() === title.toLowerCase());
+      if (!recipe) {
+        alert("Recipe not found!");
         return;
       }
-      const newMeal = { entree: newEntree, side: null };
-      if (newEntree.needsSide) {
+      let meal = { entree: recipe, side: null };
+      if (recipe.tags.includes("entree") && recipe.needsSide) {
         let possibleSides = allRecipes.filter(r =>
-          r.tags.includes("side") && r.tags.some(t => newEntree.tags.includes(t))
+          r.tags.includes("side") && r.tags.some(t => recipe.tags.includes(t))
         );
         possibleSides = possibleSides.concat(customSides);
         if (possibleSides.length) {
           const side = possibleSides[Math.floor(Math.random() * possibleSides.length)];
-          newMeal.side = side;
+          meal.side = side;
         }
       }
-      chosenMeals[mealIndex] = newMeal;
+      chosenMeals.push(meal);
       renderMeals(chosenMeals);
       const list = buildShoppingListFromMeals(chosenMeals);
       renderShoppingList(list);
     }
 
-    /********************************************************
-     * 6) RENDER SHOPPING LIST
-     ********************************************************/
+    /* RENDER SHOPPING LIST */
     function renderShoppingList(shoppingArr) {
       const container = document.getElementById("shoppingList");
       if (!container) return;
@@ -1135,7 +1273,23 @@
   
         section.items.forEach(item => {
           const li = document.createElement("li");
-          li.textContent = item;
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+              li.classList.add("strikethrough");
+            } else {
+              li.classList.remove("strikethrough");
+            }
+          });
+
+          li.appendChild(checkbox);
+
+          const span = document.createElement("span");
+          span.textContent = " " + item;
+          li.appendChild(span);
+
           ul.appendChild(li);
         });
         cardBody.appendChild(ul);
@@ -1147,22 +1301,42 @@
       container.appendChild(row);
     }
 
-    /********************************************************
-     * 7) DOWNLOAD SHOPPING LIST
-     ********************************************************/
+    /* DOWNLOAD SHOPPING LIST (skip checked items) */
     function downloadShoppingListAsTxt(shoppingArr) {
       if (!shoppingArr.length) {
         alert("No shopping list to download!");
         return;
       }
+      const container = document.getElementById("shoppingList");
+      const aisles = container.querySelectorAll(".shopping-aisle-card");
+
       let textContent = "SHOPPING LIST\n\n";
-      shoppingArr.forEach(sec => {
-        textContent += sec.aisle.toUpperCase() + ":\n";
-        sec.items.forEach(item => {
-          textContent += "  - " + item + "\n";
+      aisles.forEach(aisleCard => {
+        const aisleName = aisleCard.querySelector(".card-header").textContent.trim();
+        const liElems = aisleCard.querySelectorAll("ul li");
+        const itemsToInclude = [];
+        liElems.forEach(li => {
+          const checkbox = li.querySelector('input[type="checkbox"]');
+          if (checkbox && !checkbox.checked) {
+            // Only add if not checked
+            const text = li.textContent.replace(/^[^a-zA-Z0-9]+/, '').trim(); 
+            itemsToInclude.push(text);
+          }
         });
-        textContent += "\n";
+        if (itemsToInclude.length) {
+          textContent += aisleName.toUpperCase() + ":\n";
+          itemsToInclude.forEach(it => {
+            textContent += "  - " + it + "\n";
+          });
+          textContent += "\n";
+        }
       });
+
+      if (!textContent.trim() || textContent.trim() === "SHOPPING LIST") {
+        alert("All items are checked off. There's nothing to download!");
+        return;
+      }
+
       const blob = new Blob([textContent], { type: "text/plain" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -1174,17 +1348,12 @@
       URL.revokeObjectURL(url);
     }
 
-    /********************************************************
-     * HELPER: CAPITALIZE FIRST LETTER
-     ********************************************************/
     function capitalizeFirstLetter(s) {
       if (!s) return "";
       return s.charAt(0).toUpperCase() + s.slice(1);
     }
 
-    /********************************************************
-     * 8) SET UP THE BUTTONS
-     ********************************************************/
+    /* DOMContentLoaded */
     document.addEventListener("DOMContentLoaded", () => {
       const pickButton = document.getElementById("pickButton");
       if (pickButton) {
